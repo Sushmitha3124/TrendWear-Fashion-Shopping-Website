@@ -1,0 +1,9 @@
+-- Add all missing Order columns matching DbContext
+ALTER TABLE Orders ADD COLUMN IF NOT EXISTS OrderNumber VARCHAR(50) AFTER UserId;
+ALTER TABLE Orders ADD COLUMN PaymentType VARCHAR(20) DEFAULT 'COD' AFTER RazorpayPaymentId;
+ALTER TABLE Orders ADD COLUMN RazorpaySignature VARCHAR(100) AFTER PaymentType;
+ALTER TABLE Orders ADD COLUMN UpdatedAt DATETIME NULL AFTER CreatedAt;
+ALTER TABLE Orders ADD COLUMN UserId INT AFTER Id;
+ALTER TABLE Orders ADD KEY FK_Orders_UserId (UserId);
+ALTER TABLE Orders ADD CONSTRAINT FK_Orders_UserId FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE RESTRICT;
+
