@@ -1,0 +1,2 @@
+ALTER TABLE Orders ADD COLUMN RazorpayPaymentId VARCHAR(100) NULL;
+ALTER TABLE Orders ADD COLUMN PaymentStatus VARCHAR(50) NULL AFTER PaymentMethod;
